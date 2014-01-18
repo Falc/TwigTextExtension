@@ -1,0 +1,23 @@
+{
+    "name": "falc/twig-text-extension",
+    "description": "Twig text extension.",
+    "keywords": ["twig", "text"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aitor García",
+            "email": "aitor.falc@gmail.com",
+            "homepage": "http://aitorgarcia.org/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "twig/twig": ">=1.10"
+    },
+    "autoload": {
+        "psr-0": {
+            "": "src"
+        }
+    }
+}
