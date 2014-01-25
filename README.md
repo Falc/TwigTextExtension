@@ -2,7 +2,9 @@
 
 TwigTextExtension contains the following filters:
 
+* `br2p`: Replaces double linebreaks formatting into paragraphs.
 * `hash`: Exposes the [hash](http://www.php.net/manual/en/function.hash.php) function included in PHP.
+* `p2br`: Replaces paragraph formatting with double linebreaks.
 
 License: **MIT**
 
@@ -58,6 +60,12 @@ $twig->addExtension(new Falc\Twig\Extension\TextExtension());
 
 ## Usage
 
+### br2p
+
+```
+{{ 'This is a text.<br /><br>This should be another paragraph.' | br2p }}
+```
+
 ### Hash
 
 ```
@@ -65,3 +73,9 @@ $twig->addExtension(new Falc\Twig\Extension\TextExtension());
 ```
 
 Check [`hash_algos()`](http://www.php.net/manual/en/function.hash-algos.php) to find a list of available algorithms.
+
+### p2br
+
+```
+{{ '<p>This is a text.</p><p>This should be another paragraph.</p>' | p2br }}
+```
