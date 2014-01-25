@@ -77,6 +77,7 @@ $twig->addExtension(new Falc\Twig\Extension\TextExtension());
 
 ```
 {{ 'hash-something' | hash('md5') }}
+"6885610d9373d81639f73b6844aad6b3"
 ```
 
 Check [`hash_algos()`](http://www.php.net/manual/en/function.hash-algos.php) to find a list of available algorithms.
