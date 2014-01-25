@@ -91,7 +91,7 @@ class TextExtension extends \Twig_Extension
      *
      * @param   string      $text       String containing paragraphs.
      * @param   integer     $offset     Number of paragraphs to offset. Default: 0.
-     * @param   integer     $length     Number of paragraphs to extract. Default: null (all the paragraphs).
+     * @param   integer     $length     Number of paragraphs to extract. Default: null.
      * @return  string[]
      */
     function paragraphs_slice($text, $offset = 0, $length = null)
