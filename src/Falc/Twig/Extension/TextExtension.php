@@ -22,7 +22,8 @@ class TextExtension extends \Twig_Extension
         return array(
             new \Twig_SimpleFilter('br2p', array($this, 'br2p'), array('is_safe' => array('html'))),
             new \Twig_SimpleFilter('hash', array($this, 'hash')),
-            new \Twig_SimpleFilter('p2br', array($this, 'p2br'), array('is_safe' => array('html')))
+            new \Twig_SimpleFilter('p2br', array($this, 'p2br'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFilter('paragraphs_slice', array($this, 'paragraphs_slice'), array('is_safe' => array('html'))),
         );
     }
 
@@ -79,6 +80,32 @@ class TextExtension extends \Twig_Extension
         $data = str_replace('</p>', '<br /><br />', $data);
 
         return $data;
+    }
+
+    /**
+     * Extracts paragraphs from a string.
+     *
+     * This function uses array_slice(). The function signatures are similar.
+     *
+     * @see     http://www.php.net/manual/en/function.array-slice.php
+     *
+     * @param   string      $text       String containing paragraphs.
+     * @param   integer     $offset     Number of paragraphs to offset. Default: 0.
+     * @param   integer     $length     Number of paragraphs to extract. Default: null (all the paragraphs).
+     * @return  string[]
+     */
+    function paragraphs_slice($text, $offset = 0, $length = null)
+    {
+        $result = array();
+        preg_match_all('#<p[^>]*>(.*?)</p>#', $text, $result);
+
+        // Null length = all the paragraphs
+        if ($length === null)
+        {
+            $length = count($result[0]) - $offset;
+        }
+
+        return array_slice($result[0], $offset, $length);
     }
 
     /**
