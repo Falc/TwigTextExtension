@@ -12,7 +12,7 @@ License: **MIT**
 ## Requirements
 
 * PHP >= 5.3
-* Twig >= 1.10
+* Twig >= 1.12
 
 ## Installation
 
