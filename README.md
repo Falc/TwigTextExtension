@@ -5,6 +5,7 @@ TwigTextExtension contains the following filters:
 * `br2p`: Replaces double linebreaks formatting into paragraphs.
 * `hash`: Exposes the [hash](http://www.php.net/manual/en/function.hash.php) function included in PHP.
 * `p2br`: Replaces paragraph formatting with double linebreaks.
+* `paragraphs_slice`: Extracts paragraphs from a string. Similar to [array_slice](http://www.php.net/manual/en/function.array-slice.php).
 
 License: **MIT**
 
@@ -64,9 +65,15 @@ $twig->addExtension(new Falc\Twig\Extension\TextExtension());
 
 ```
 {{ 'This is a text.<br /><br>This should be another paragraph.' | br2p }}
+"<p>This is a text.</p><p>This should be another paragraph.</p>"
 ```
 
-### Hash
+### hash(algorithm, rawOutput)
+
+* `algorithm`: Name of selected hashing algorithm (i.e. "md5", "sha256", "haval160,4", etc..)
+* `rawOutput`: When set to `true`, outputs raw binary data. `False` outputs lowercase hexits.
+  * Optional.
+  * Default is **false**.
 
 ```
 {{ 'hash-something' | hash('md5') }}
@@ -78,4 +85,61 @@ Check [`hash_algos()`](http://www.php.net/manual/en/function.hash-algos.php) to 
 
 ```
 {{ '<p>This is a text.</p><p>This should be another paragraph.</p>' | p2br }}
+"This is a text.<br /><br />This should be another paragraph."
 ```
+
+### paragraphs_slice(offset, length)
+
+* `offset`: Number of paragraphs to offset.
+  * Optional.
+  * Default is **0**.
+* `length`: Number of paragraphs to return.
+  * Optional.
+  * Default is **null**.
+
+This filter works like [array_slice](http://www.php.net/manual/en/function.array-slice.php).
+
+#### Examples
+
+Without parameters, it will return an arary containing all the paragraphs:
+
+```
+{{ '<p>First paragraph.</p><p>Second paragraph.</p><p>Third paragraph</p>' | paragraphs_slice }}
+["<p>First paragraph.</p>", "<p>Second paragraph.</p>", "<p>Third paragraph</p>"]
+```
+
+Return an array containing the first two paragraphs:
+
+```
+{{ '<p>First paragraph.</p><p>Second paragraph.</p><p>Third paragraph</p>' | paragraphs_slice(0, 2) }}
+["<p>First paragraph.</p>", "<p>Second paragraph.</p>"]
+```
+
+Return an array containing only the second paragraph:
+
+```
+{{ '<p>First paragraph.</p><p>Second paragraph.</p><p>Third paragraph</p>' | paragraphs_slice(1, 1) }}
+["<p>Second paragraph.</p>"]
+```
+
+Return an array containing the last paragraph:
+
+```
+{{ '<p>First paragraph.</p><p>Second paragraph.</p><p>Third paragraph</p>' | paragraphs_slice(0, -1) }}
+["<p>Third paragraph</p>"]
+```
+
+Twig allows to chain filters, so you can join the resulting array using [join](http://twig.sensiolabs.org/doc/filters/join.html)...
+
+```
+{{ '<p>First paragraph.</p><p>Second paragraph.</p><p>Third paragraph</p>' | paragraphs_slice(0, 2) | join }}
+"<p>First paragraph.</p><p>Second paragraph.</p>"
+```
+
+...and to make Twig process HTML, chain the [raw](http://twig.sensiolabs.org/doc/filters/raw.html) filter:
+
+```
+{{ '<p>First paragraph.</p><p>Second paragraph.</p><p>Third paragraph</p>' | paragraphs_slice(0, 2) | join | raw }}
+```
+
+That way it is possible to truncate a text at a paragraph level.
