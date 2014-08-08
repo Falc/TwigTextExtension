@@ -24,6 +24,7 @@ class TextExtension extends \Twig_Extension
             new \Twig_SimpleFilter('hash', array($this, 'hash')),
             new \Twig_SimpleFilter('p2br', array($this, 'p2br'), array('is_safe' => array('html'))),
             new \Twig_SimpleFilter('paragraphs_slice', array($this, 'paragraphs_slice'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFilter('repeat', array($this, 'repeat'))
         );
     }
 
@@ -105,6 +106,19 @@ class TextExtension extends \Twig_Extension
         }
 
         return array_slice($result[0], $offset, $length);
+    }
+
+    /**
+     * Repeats a string.
+     *
+     * @see     http://php.net/manual/en/function.str-repeat.php
+     *
+     * @param   string      $string     String to repeat.
+     * @param   integer     $num        Number of times.
+     */
+    public function repeat($string, $num)
+    {
+        return str_repeat($string, $num);
     }
 
     /**

@@ -6,6 +6,7 @@ TwigTextExtension contains the following filters:
 * `hash`: Exposes the [hash](http://www.php.net/manual/en/function.hash.php) function included in PHP.
 * `p2br`: Replaces paragraph formatting with double linebreaks.
 * `paragraphs_slice`: Extracts paragraphs from a string. Similar to [array_slice](http://www.php.net/manual/en/function.array-slice.php).
+* `repeat`: Exposes the [str_repeat](http://php.net/manual/en/function.str-repeat.php) function included in PHP.
 
 License: **MIT**
 
@@ -168,3 +169,15 @@ Twig allows to chain filters, so you can join the resulting array using [join](h
 ```
 
 That way it is possible to truncate a text at a paragraph level.
+
+### repeat(num)
+
+* `num`: Number of times to repeat the string.
+
+```
+// Example
+{{ '-=' | repeat(10) }}
+
+// Output
+"-=-=-=-=-=-=-=-=-=-="
+```
