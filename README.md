@@ -64,7 +64,10 @@ $twig->addExtension(new Falc\Twig\Extension\TextExtension());
 ### br2p
 
 ```
+// Example
 {{ 'This is a text.<br /><br>This should be another paragraph.' | br2p }}
+
+// Output
 "<p>This is a text.</p><p>This should be another paragraph.</p>"
 ```
 
@@ -76,7 +79,10 @@ $twig->addExtension(new Falc\Twig\Extension\TextExtension());
   * Default is **false**.
 
 ```
+// Example
 {{ 'hash-something' | hash('md5') }}
+
+// Output
 "6885610d9373d81639f73b6844aad6b3"
 ```
 
@@ -85,7 +91,10 @@ Check [`hash_algos()`](http://www.php.net/manual/en/function.hash-algos.php) to 
 ### p2br
 
 ```
+// Example
 {{ '<p>This is a text.</p><p>This should be another paragraph.</p>' | p2br }}
+
+// Output
 "This is a text.<br /><br />This should be another paragraph."
 ```
 
@@ -102,38 +111,53 @@ This filter works like [array_slice](http://www.php.net/manual/en/function.array
 
 #### Examples
 
-Without parameters, it will return an arary containing all the paragraphs:
+Without parameters, it will return an array containing all the paragraphs:
 
 ```
+// Example
 {{ '<p>First paragraph.</p><p>Second paragraph.</p><p>Third paragraph</p>' | paragraphs_slice }}
+
+// Output
 ["<p>First paragraph.</p>", "<p>Second paragraph.</p>", "<p>Third paragraph</p>"]
 ```
 
 Return an array containing the first two paragraphs:
 
 ```
+// Example
 {{ '<p>First paragraph.</p><p>Second paragraph.</p><p>Third paragraph</p>' | paragraphs_slice(0, 2) }}
+
+// Output
 ["<p>First paragraph.</p>", "<p>Second paragraph.</p>"]
 ```
 
 Return an array containing only the second paragraph:
 
 ```
+// Example
 {{ '<p>First paragraph.</p><p>Second paragraph.</p><p>Third paragraph</p>' | paragraphs_slice(1, 1) }}
+
+// Output
 ["<p>Second paragraph.</p>"]
 ```
 
 Return an array containing the last paragraph:
 
 ```
+// Example
 {{ '<p>First paragraph.</p><p>Second paragraph.</p><p>Third paragraph</p>' | paragraphs_slice(0, -1) }}
+
+// Output
 ["<p>Third paragraph</p>"]
 ```
 
 Twig allows to chain filters, so you can join the resulting array using [join](http://twig.sensiolabs.org/doc/filters/join.html)...
 
 ```
+// Example
 {{ '<p>First paragraph.</p><p>Second paragraph.</p><p>Third paragraph</p>' | paragraphs_slice(0, 2) | join }}
+
+// Output
 "<p>First paragraph.</p><p>Second paragraph.</p>"
 ```
 

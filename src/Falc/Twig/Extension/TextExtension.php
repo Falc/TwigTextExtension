@@ -94,14 +94,13 @@ class TextExtension extends \Twig_Extension
      * @param   integer     $length     Number of paragraphs to extract. Default: null.
      * @return  string[]
      */
-    function paragraphs_slice($text, $offset = 0, $length = null)
+    public function paragraphs_slice($text, $offset = 0, $length = null)
     {
         $result = array();
         preg_match_all('#<p[^>]*>(.*?)</p>#', $text, $result);
 
         // Null length = all the paragraphs
-        if ($length === null)
-        {
+        if ($length === null) {
             $length = count($result[0]) - $offset;
         }
 
