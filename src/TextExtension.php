@@ -3,7 +3,7 @@
  * This file contains the TextExtension class.
  *
  * @author      Aitor García (Falc) <aitor.falc@gmail.com>
- * @copyright   2014 Aitor García (Falc) <aitor.falc@gmail.com>
+ * @copyright   2014-2015 Aitor García (Falc) <aitor.falc@gmail.com>
  * @license     MIT
  */
 
