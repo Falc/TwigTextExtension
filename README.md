@@ -12,17 +12,14 @@ License: **MIT**
 
 ## Requirements
 
-* PHP >= 5.3
 * Twig >= 1.12
 
 ## Installation
 
-Update your `composer.json`:
+Add the `falc/twig-text-extension` package to your `composer.json`:
 
-```json
-"require": {
-    "falc/twig-text-extension": "dev-master"
-}
+```
+composer require falc/twig-text-extension
 ```
 
 ### Symfony
