@@ -24,6 +24,7 @@ class TextExtension extends \Twig_Extension
             new \Twig_SimpleFilter('hash', array($this, 'hash')),
             new \Twig_SimpleFilter('p2br', array($this, 'p2br'), array('is_safe' => array('html'))),
             new \Twig_SimpleFilter('paragraphs_slice', array($this, 'paragraphs_slice'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFilter('regex_replace', array($this, 'regex_replace')),
             new \Twig_SimpleFilter('repeat', array($this, 'repeat'))
         );
     }
@@ -106,6 +107,22 @@ class TextExtension extends \Twig_Extension
         }
 
         return array_slice($result[0], $offset, $length);
+    }
+
+    /**
+     * Performs a regular expression search and replace.
+     *
+     * @see     http://php.net/manual/en/function.preg-replace.php
+     *
+     * @param   string  $subject        String or array of strings to search and replace.
+     * @param   mixed   $pattern        Pattern to search for. It can be either a string or an array with strings.
+     * @param   mixed   $replacement    String or array with strings to replace.
+     * @param   integer $limit          Maximum possible replacements for each pattern in each subject string. Default is no limit.
+     * @return  string
+     */
+    public function regex_replace($subject, $pattern, $replacement, $limit = null)
+    {
+        return preg_replace($pattern, $replacement, $subject, $limit);
     }
 
     /**
