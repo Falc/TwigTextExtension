@@ -120,7 +120,7 @@ class TextExtension extends \Twig_Extension
      * @param   integer $limit          Maximum possible replacements for each pattern in each subject string. Default is no limit.
      * @return  string
      */
-    public function regex_replace($subject, $pattern, $replacement, $limit = null)
+    public function regex_replace($subject, $pattern, $replacement, $limit = -1)
     {
         return preg_replace($pattern, $replacement, $subject, $limit);
     }
