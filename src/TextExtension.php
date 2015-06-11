@@ -115,6 +115,7 @@ class TextExtension extends \Twig_Extension
      *
      * @param   string      $string     String to repeat.
      * @param   integer     $num        Number of times.
+     * @return  string
      */
     public function repeat($string, $num)
     {
