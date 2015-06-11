@@ -16,8 +16,8 @@
         "twig/twig": ">=1.12"
     },
     "autoload": {
-        "psr-0": {
-            "": "src"
+        "psr-4": {
+            "Falc\\Twig\\Extension\\": "src/"
         }
     }
 }
