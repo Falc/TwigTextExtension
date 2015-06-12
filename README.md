@@ -6,6 +6,7 @@ TwigTextExtension contains the following filters:
 * `hash`: Exposes the [hash](http://www.php.net/manual/en/function.hash.php) function included in PHP.
 * `p2br`: Replaces paragraph formatting with double linebreaks.
 * `paragraphs_slice`: Extracts paragraphs from a string. Similar to [array_slice](http://www.php.net/manual/en/function.array-slice.php).
+* `regex_replace`: Exposes the [preg_replace](http://php.net/manual/en/function.preg-replace.php) function included in PHP.
 * `repeat`: Exposes the [str_repeat](http://php.net/manual/en/function.str-repeat.php) function included in PHP.
 
 License: **MIT**
@@ -166,6 +167,22 @@ Twig allows to chain filters, so you can join the resulting array using [join](h
 ```
 
 That way it is possible to truncate a text at a paragraph level.
+
+### regex_replace(pattern, replacement, limit)
+
+* `pattern`: Pattern to search for. It can be either a string or an array with strings.
+* `replacement`: String or array with strings to replace.
+* `limit`: Maximum possible replacements for each pattern in each subject string.
+  * Optional.
+  * Default is **-1 (no limit)**.
+
+```
+// Example
+{{ '<p>1) This is the first title<br>2) This is the second title<br>42)   Another title</p>' | regex_replace('#\\d+\\)\\s*#', '') }}
+
+// Output
+"<p>This is the first title<br>This is the second title<br>Another title</p>"
+```
 
 ### repeat(num)
 
